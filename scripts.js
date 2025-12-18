@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { id: 3, products: "tree", price: 400 },
     { id: 4, products: "tyre", price: 3300 },
   ];
-  let cart = JSON.parse(localStorage.getItem('value'))||[];
+  let cart = JSON.parse(localStorage.getItem("value")) || [];
   let total = 0;
   const productSection = document.querySelector(".products");
   const addmsg = document.querySelector(".card-msg");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let cartResult = products.find((pro) => pro.id === productId);
       cart.push(cartResult);
-localStorage.setItem('value',JSON.stringify(cart))
+      syncart();
       addToCart();
     }
   });
@@ -41,7 +41,7 @@ localStorage.setItem('value',JSON.stringify(cart))
         <button class="checkOut">checkout</button>
       </article>
     `;
-      
+
       return;
     }
     addmsg.innerHTML = "";
@@ -68,7 +68,7 @@ localStorage.setItem('value',JSON.stringify(cart))
     const index = cart.findIndex((data) => data.id === id);
     if (index !== -1) {
       cart.splice(index, 1);
-      localStorage.setItem('value',JSON.stringify(cart))
+      syncart();
     }
 
     addToCart();
@@ -81,10 +81,7 @@ localStorage.setItem('value',JSON.stringify(cart))
 >checkout</button></article>
 
 `;
-
-
   }
-
 
   totalValue.addEventListener("click", function (e) {
     if (e.target.classList.contains("checkOut")) {
@@ -99,9 +96,12 @@ localStorage.setItem('value',JSON.stringify(cart))
     cart.length = 0;
     addmsg.innerHTML = "empty card";
     total = 0;
-    localStorage.removeItem('value')
-    addToCart()
+    localStorage.removeItem("value");
+    addToCart();
   }
-addToCart()
-});
 
+  function syncart() {
+    localStorage.setItem("value", JSON.stringify(cart));
+  }
+  addToCart();
+});
