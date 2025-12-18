@@ -28,8 +28,25 @@ color: white;
 padding: 10px;
 border-radius: 8px;
 }
-.total-price{
- visibility:hidden;
+.card-msg{
+  padding: 10px;
+}
+.total{
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 10px;
+ 
+}
+.total button{
+  padding: 5px;
+  border-radius: 3px;
+  border: none;
+  font-size: medium;
 }
 .pro{
   height: fit-content;
